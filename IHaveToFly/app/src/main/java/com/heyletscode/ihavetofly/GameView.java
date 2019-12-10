@@ -79,7 +79,7 @@ public class GameView extends SurfaceView implements Runnable {
 
         birds = new Bird[4];
 
-        for (int i = 0;i < 4;i++) {
+        for (int i = 0; i < 4; i++) {
 
             Bird bird = new Bird(getResources());
             birds[i] = bird;
@@ -95,15 +95,15 @@ public class GameView extends SurfaceView implements Runnable {
 
         while (isPlaying) {
 
-            update ();
-            draw ();
-            sleep ();
+            update();
+            draw();
+            sleep();
 
         }
 
     }
 
-    private void update () {
+    private void update() {
 
         background1.x -= 10 * screenRatioX;
         background2.x -= 10 * screenRatioX;
@@ -188,7 +188,7 @@ public class GameView extends SurfaceView implements Runnable {
 
     }
 
-    private void draw () {
+    private void draw() {
 
         if (getHolder().getSurface().isValid()) {
 
@@ -206,7 +206,7 @@ public class GameView extends SurfaceView implements Runnable {
                 canvas.drawBitmap(flight.getDead(), flight.x, flight.y, paint);
                 getHolder().unlockCanvasAndPost(canvas);
                 saveIfHighScore();
-                waitBeforeExiting ();
+                waitBeforeExiting();
                 return;
             }
 
@@ -224,7 +224,8 @@ public class GameView extends SurfaceView implements Runnable {
     private void waitBeforeExiting() {
 
         try {
-            Thread.sleep(3000);
+            Thread.sleep(1000);
+            MainActivity.openAds++;
             activity.startActivity(new Intent(activity, MainActivity.class));
             activity.finish();
         } catch (InterruptedException e) {
@@ -243,7 +244,7 @@ public class GameView extends SurfaceView implements Runnable {
 
     }
 
-    private void sleep () {
+    private void sleep() {
         try {
             Thread.sleep(17);
         } catch (InterruptedException e) {
@@ -251,7 +252,7 @@ public class GameView extends SurfaceView implements Runnable {
         }
     }
 
-    public void resume () {
+    public void resume() {
 
         isPlaying = true;
         thread = new Thread(this);
@@ -259,7 +260,7 @@ public class GameView extends SurfaceView implements Runnable {
 
     }
 
-    public void pause () {
+    public void pause() {
 
         try {
             isPlaying = false;
